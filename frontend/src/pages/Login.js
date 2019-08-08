@@ -1,16 +1,25 @@
 import React, { useState} from 'react';
 import './Login.css';
 
+
+import api from './../services/api';
+
 import logo from './../assets/logo-tindev.svg';
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log(username)
+        
+        // console.log(username)
+        const response = await api.post('/devs', {
+            username
+        })
+        
+        const { _id  } = response.data
 
-        history.push('/main');
+        history.push(`/dev/${_id}`);
     }
 
     return (

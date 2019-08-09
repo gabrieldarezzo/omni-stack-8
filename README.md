@@ -29,7 +29,8 @@ npm run dev
 
 
 ToDo list (BackEnd):
-- [ ] Fix bug in /devs, if don't have deslikes || likes will crash list
+- [x] Fix bug in /devs, if don't have deslikes || likes will crash list -> Troubleshooting (DevControllers.js)
+- [x] Work in LAN network, like: http://192.168.0.16:3333/devs
 
 ---
 
@@ -139,4 +140,29 @@ npm start
 Yarn:
 ```shell
 yarn start
+```
+
+##### getting error on `http://localhost:3333/devs` TypeError: Cannot read property 'likes' of null
+
+in `DevControllers.js`, you need change you `index` to avoid 
+```js
+async index(req, res) {
+    if(!req.headers.user) {
+        // Show all unsers if not set
+        const users = await Dev.find();
+        return res.json(users);        
+    } else {
+        const { user } = req.headers;
+        const arrFields = [
+            { _id: { $ne: user  } },
+            { _id: { $nin: loggedDev.likes  } },
+            { _id: { $nin: loggedDev.dislikes  } },
+        ];
+        const loggedDev = await Dev.findById(user);
+        const users = await Dev.find({
+            $and: arrFields
+        });
+        return res.json(users);
+    }
+},
 ```

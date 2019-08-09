@@ -2,20 +2,22 @@ const axios = require('axios');
 const Dev = require('../models/Dev');
 module.exports = {
     async index(req, res) {
-        const { user } = req.headers;
-
-        const loggedDev = await Dev.findById(user);
-        const users = await Dev.find({
-            $and: [
+        if(!req.headers.user) {
+            const users = await Dev.find();
+            return res.json(users);        
+        } else {
+            const { user } = req.headers;
+            const arrFields = [
                 { _id: { $ne: user  } },
                 { _id: { $nin: loggedDev.likes  } },
                 { _id: { $nin: loggedDev.dislikes  } },
-            ]
-        });
-
-
-        return res.json(users);
-
+            ];
+            const loggedDev = await Dev.findById(user);
+            const users = await Dev.find({
+                $and: arrFields
+            });
+            return res.json(users);
+        }
     },
     async store(req, res) {
         const { username } = req.body;

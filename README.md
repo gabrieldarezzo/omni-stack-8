@@ -36,7 +36,7 @@ ToDo list (BackEnd):
 
 ## FrontEnd (ReactJs)
 
-Visual:  
+Demo-Screen:  
 ![Demo do Tinder Dev](docs/demo-app.png)  
 
 Start 
@@ -51,6 +51,10 @@ npm start
 
 
 ## Mobile (React-Native)
+
+Demo-Screen:  
+![Demo do Tinder Dev](docs/tindev-mobile.jpg)  
+
 
 
 ### Android in Windows
@@ -74,7 +78,7 @@ Now just run this command:
 ```
 react-native run-android
 ```
-Ps: Make sure you Android is connected to USB with `Remote Debugging Android Devices`, more info here: 
+Ps: Make sure you Android is connected to USB with `Remote Debugging Android Devices`, more info here:   
 https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?hl=pt-br
 
 You'll see this screen in Your Android Device if everthings work:
@@ -94,20 +98,20 @@ First check if you device is listed here:
 ```shell
 adb devices
 ```
-Your device should be listed like this:
+adb should list your device like this:
 ```
 List of devices attached
 0049375864      device
 ```
 
 
-If not,
-Go in your android, `Options > Developer`
-Disable and enable options:  
-1 - Developer Mode  
-2- Usb Debugging Android
+If not,  
+In your Android Device, `Options > Developer`  
+Disable and enable options:    
+ *  Developer Mode  
+ * Usb Debugging Android
 
-And try adb list.
+And try run `adb devices` again.  
 
 ---- 
 
@@ -120,11 +124,11 @@ operable program or batch file.
 
 Confirm if adb exists in folder:
 `C:\Users\Gabriel\AppData\Local\Android\sdk\platform-tools`
--> Ps: 'Gabriel' should change...
+-> Ps: You need change `Gabriel` to your username.
 
 
 Then just add in your PATH env: 
-`C:\Users\YOURUSER\AppData\Local\Android\sdk\platform-tools`
+`C:\Users\YOURUSER\AppData\Local\Android\sdk\platform-tools` 
 
 
 ##### After add '.png' get 500 error.
@@ -142,7 +146,8 @@ Yarn:
 yarn start
 ```
 
-##### getting error on `http://localhost:3333/devs` TypeError: Cannot read property 'likes' of null
+##### getting error on `http://localhost:3333/devs` TypeError: Cannot read property 'likes' of null :  
+##### getting error on `http://localhost:3333/devs` TypeError: Cannot read property 'dislikes' of null :  
 
 in `DevControllers.js`, you need change you `index` to avoid 
 ```js

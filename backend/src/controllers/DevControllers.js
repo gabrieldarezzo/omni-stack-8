@@ -7,12 +7,14 @@ module.exports = {
             return res.json(users);        
         } else {
             const { user } = req.headers;
+
+            const loggedDev = await Dev.findById(user);
             const arrFields = [
                 { _id: { $ne: user  } },
                 { _id: { $nin: loggedDev.likes  } },
                 { _id: { $nin: loggedDev.dislikes  } },
             ];
-            const loggedDev = await Dev.findById(user);
+            
             const users = await Dev.find({
                 $and: arrFields
             });

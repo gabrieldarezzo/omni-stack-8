@@ -124,3 +124,19 @@ Confirm if adb exists in folder:
 
 Then just add in your PATH env: 
 `C:\Users\YOURUSER\AppData\Local\Android\sdk\platform-tools`
+
+
+##### After add '.png' get 500 error.
+Just close  Your `Running Metro Bundler on port 8081.`
+And restar then:
+
+
+Npm:
+```
+npm start
+```
+
+Yarn:
+```shell
+yarn start
+```

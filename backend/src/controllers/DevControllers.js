@@ -13,7 +13,7 @@ module.exports = {
                 { _id: { $ne: user  } },
                 { _id: { $nin: loggedDev.likes  } },
                 { _id: { $nin: loggedDev.dislikes  } },
-            ];
+            ]; 
             
             const users = await Dev.find({
                 $and: arrFields

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+
+import io from 'socket.io-client';
 import { Link } from 'react-router-dom';
 import './Main.css';
 
@@ -7,13 +9,10 @@ import api from '../services/api'
 import logo from './../assets/logo-tindev.svg';
 import like from '../assets/like.svg';
 import dislike from '../assets/dislike.svg';
-import { async } from 'q';
 
 export default function Main({match}) {
-
     const [users, setUsers] = useState([]);
-
-
+    
     useEffect(() => {
         (async function loadUsers() {
             const response = await api.get('/devs', {
@@ -24,7 +23,17 @@ export default function Main({match}) {
 
             setUsers(response.data);
         })();
-    }, [match.params.id])
+    }, [match.params.id]);
+
+    useEffect(() => {
+        io('http://localhost:3333', {
+            query: { user:  match.params.id }
+        });
+    }, [match.params.id]);
+
+    
+
+
 
     async function handleLike(id) {
         await api.post(`/devs/${id}/likes`, null, {

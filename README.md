@@ -78,3 +78,49 @@ https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?hl=pt-
 
 You'll see this screen in Your Android Device if everthings work:
 ![Demo do Tinder Dev](docs/react-native.jpg)  
+
+
+#### Troubleshooting 
+
+##### No connected devices
+```
+* What went wrong:
+Execution failed for task ':app:installDebug'.
+> com.android.builder.testing.api.DeviceException: No connected devices!
+```
+
+First check if you device is listed here:
+```shell
+adb devices
+```
+Your device should be listed like this:
+```
+List of devices attached
+0049375864      device
+```
+
+
+If not,
+Go in your android, `Options > Developer`
+Disable and enable options:  
+1 - Developer Mode  
+2- Usb Debugging Android
+
+And try adb list.
+
+---- 
+
+##### 'adb' is not recognized as an internal or external command
+
+```
+'adb' is not recognized as an internal or external command,
+operable program or batch file.
+```
+
+Confirm if adb exists in folder:
+`C:\Users\Gabriel\AppData\Local\Android\sdk\platform-tools`
+-> Ps: 'Gabriel' should change...
+
+
+Then just add in your PATH env: 
+`C:\Users\YOURUSER\AppData\Local\Android\sdk\platform-tools`

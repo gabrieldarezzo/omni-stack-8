@@ -6,7 +6,7 @@ const devSchema = new Schema({
         type: String,
         required: true,
     },
-    name : {
+    user : {
         type: String,
         required: true,
     },
@@ -24,10 +24,8 @@ const devSchema = new Schema({
         ref: 'Dev',
     }],
 }, {
+    // timestamps: true, -> (createdAt, updatedAt)
     timestamps: true,
 });
 
 module.exports = model('Dev', devSchema);
-
-// timestamps: true, -> (createdAt, updatedAt)
-

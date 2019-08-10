@@ -4,8 +4,8 @@ const axios = require('axios');
 module.exports = {
     async store(req, res) {
 
-        console.log('req.io', req.io);
-        console.log('req.connectedUsers', req.connectedUsers);
+        // console.log('req.io', req.io);
+        // console.log('req.connectedUsers', req.connectedUsers);
 
 
         const { user } = req.headers;

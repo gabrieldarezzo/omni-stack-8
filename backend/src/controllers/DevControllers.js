@@ -5,21 +5,21 @@ module.exports = {
         if(!req.headers.user) {
             const users = await Dev.find();
             return res.json(users);        
-        } else {
-            const { user } = req.headers;
-
-            const loggedDev = await Dev.findById(user);
-            const arrFields = [
-                { _id: { $ne: user  } },
-                { _id: { $nin: loggedDev.likes  } },
-                { _id: { $nin: loggedDev.dislikes  } },
-            ]; 
-            
-            const users = await Dev.find({
-                $and: arrFields
-            });
-            return res.json(users);
         }
+        
+        const { user } = req.headers;
+        const loggedDev = await Dev.findById(user);
+        const arrFields = [
+            { _id: { $ne: user  } },
+            { _id: { $nin: loggedDev.likes  } },
+            { _id: { $nin: loggedDev.dislikes  } },
+        ]; 
+        
+        const users = await Dev.find({
+            $and: arrFields
+        });
+        return res.json(users);
+        
     },
     async store(req, res) {
         const { username } = req.body;

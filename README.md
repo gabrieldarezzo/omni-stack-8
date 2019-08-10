@@ -108,7 +108,7 @@ List of devices attached
 If not,  
 In your Android Device, `Options > Developer`  
 Disable and enable options:    
- *  Developer Mode  
+ * Developer Mode  
  * Usb Debugging Android
 
 And try run `adb devices` again.  
@@ -171,3 +171,53 @@ async index(req, res) {
     }
 },
 ```
+
+##### Clone repo and get erro > Task :app:validateSigningDebug FAILED
+
+After run:  
+```
+git clone https://github.com/gabrieldarezzo/omni-stack-8.git
+cd omni-stack-8
+cd tindev
+npm install
+react-native run-android
+```  
+
+I got this error:  
+```
+react-native run-android
+info Running jetifier to migrate libraries to AndroidX. You can disable it using "--no-jetifier" flag.
+Jetifier found 1339 file(s) to forward-jetify. Using 4 workers...
+info JS server already running.
+info Installing the app...
+> Task :app:validateSigningDebug FAILED
+```  
+  
+
+In this case, i fix this with 2 steps:   
+ * Open by `Android Studio` project inside folder /android
+Wait `gradlew` finish
+And just try Run.
+![Demo do Tinder Dev](docs/android-studio-run.png)  
+
+ 
+ *  if you get gradlew error like this:
+```
+Keystore file '/Project-Folder/android/app/debug.keystore' not found for signing config 'debug' in react-native 0.60
+```
+Just Download:  
+https://raw.githubusercontent.com/facebook/react-native/master/template/android/app/debug.keystore   
+
+and put `debug.keystore` in: `\android\app\debug.keystore`
+Try again
+```
+react-native run-android
+```
+
+
+
+
+
+
+
+

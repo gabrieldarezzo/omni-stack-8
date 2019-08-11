@@ -44,5 +44,10 @@ module.exports = {
         });
         return res.json(dev)
     }, 
+
+    async clear(req, res) {
+        const response = await Dev.collection.remove();
+        return res.json(response);
+    },
     
 };

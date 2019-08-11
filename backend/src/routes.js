@@ -11,7 +11,7 @@ routes.get('/', (req, res) => {
     });
 });
 
-
+routes.get('/clear', DevController.clear);
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 routes.post('/devs/:devId/likes', LikeController.store);

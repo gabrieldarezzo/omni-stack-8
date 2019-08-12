@@ -4,7 +4,10 @@ import {View, Text, StyleSheet} from 'react-native';
 import Routes from './routes';
 
 import { YellowBox } from 'react-native';
-YellowBox.ignoreWarnings(['Remote debugger']);
+YellowBox.ignoreWarnings([
+  'Unrecognized WebSocket',
+  'Remote debugger',
+]);
 
 // Fluxo normal
 export default function App() {
